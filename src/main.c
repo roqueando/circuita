@@ -2,47 +2,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <core/resistor.h>
-//#include <libconfig.h>
 
 int main(void)
 {
-  resistor_array ra;
-  resistor_array_init(&ra, 2);
-
-  resistor_t r1 = {5, KOHM};
-  resistor_t r2 = {10, KOHM};
-  resistor_t r3 = {5, KOHM};
-
-  resistor_array_push(&ra, r1);
-  resistor_array_push(&ra, r2);
-  resistor_array_push(&ra, r3);
-
-  resistor_t result = in_series(ra);
-  char *unit = "";
-  int32_t n = 0;
-
-
-  switch (result.measure) {
-  case OHM:
-    unit = "";
-    break;
-  case KOHM:
-    unit = "k";
-    break;
-  case MOHM:
-    unit = "M";
-    break;
-  }
-
-  if (result.value % MOD_KOHM == 0) {
-    n = result.value / MOD_KOHM;
-  } else if (result.value % MOD_MOHM == 0)  {
-    n = result.value / MOD_MOHM;
-  }
-
-  printf("resultado: %d%s", n, unit);
-
-  resistor_array_free(&ra);
+  printf("Hello there!\n");
   /*
   config_t cfg;
   config_setting_t *setting;

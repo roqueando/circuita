@@ -12,7 +12,7 @@ typedef enum {
 } r_measure;
 
 typedef struct {
-  int32_t value;
+  double value;
   r_measure measure;
 } resistor_t;
 
@@ -24,6 +24,7 @@ typedef struct {
 
 resistor_t in_series(resistor_array rs);
 resistor_t in_parallel(resistor_array rs);
+resistor_t to_kohm(resistor_t r);
 
 
 void resistor_array_init(resistor_array *arr, size_t initial_capacity);

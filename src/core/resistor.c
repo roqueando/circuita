@@ -1,6 +1,7 @@
 #include <core/resistor.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <math.h>
 
 void resistor_array_init(resistor_array *arr, size_t initial_capacity) {
     arr->length = 0;
@@ -34,7 +35,7 @@ void resistor_array_free(resistor_array *arr) {
 
 resistor_t in_series(resistor_array rs)
 {
-  int32_t result = 0;
+  double result = 0.0;
   resistor_t r_result;
   for (size_t i = 0; i < rs.length; ++i) {
     switch(rs.resistors[i].measure) {
@@ -52,9 +53,9 @@ resistor_t in_series(resistor_array rs)
 
   r_result.value = result;
 
-  if (result % MOD_KOHM == 0) {
+  if (fmod(result, MOD_KOHM) == 0.0) {
     r_result.measure = KOHM;
-  } else if (result % MOD_MOHM == 0) {
+  } else if (fmod(result, MOD_MOHM) == 0.0) {
     r_result.measure = MOHM;
   }
 
@@ -63,7 +64,7 @@ resistor_t in_series(resistor_array rs)
 
 resistor_t in_parallel(resistor_array rs)
 {
-  int32_t result = 1;
+  double result = 1.0;
   resistor_t r_result;
   resistor_t in_series_result = in_series(rs);
 
@@ -83,11 +84,20 @@ resistor_t in_parallel(resistor_array rs)
 
   r_result.value = result / in_series_result.value;
 
-  if (result % MOD_KOHM == 0) {
+  if (fmod(result, MOD_KOHM) == 0.0) {
     r_result.measure = KOHM;
-  } else if (result % MOD_MOHM == 0) {
+  } else if (fmod(result, MOD_MOHM) == 0.0) {
     r_result.measure = MOHM;
   }
 
   return r_result;
+}
+
+resistor_t to_kohm(resistor_t r)
+{
+  resistor_t result;
+  result.measure = KOHM;
+
+  result.value = r.value / MOD_KOHM;
+  return result;
 }

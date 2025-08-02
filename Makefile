@@ -3,6 +3,9 @@ BUILDDIR = build/debug
 
 all: build run
 
+test: build
+	@cd $(BUILDDIR)/test && ctest --output-on-failure
+
 run: $(BUILDDIR)/Makefile
 	@cd $(BUILDDIR) && ./$(TARGET)
 
@@ -16,4 +19,4 @@ clean:
 	@$(MAKE) -C $(BUILDDIR) clean
 	@rm -rf $(BUILDDIR)
 
-.PHONY: build run clean all
+.PHONY: build run clean all test

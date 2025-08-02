@@ -23,6 +23,7 @@ typedef struct {
 } resistor_array;
 
 resistor_t in_series(resistor_array rs);
+resistor_t in_parallel(resistor_array rs);
 
 
 void resistor_array_init(resistor_array *arr, size_t initial_capacity);

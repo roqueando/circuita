@@ -37,21 +37,51 @@ resistor_t in_series(resistor_array rs)
   int32_t result = 0;
   resistor_t r_result;
   for (size_t i = 0; i < rs.length; ++i) {
-    //result += rs.resistors[i].value;
-    if (rs.resistors[i].measure == OHM) {
+    switch(rs.resistors[i].measure) {
+    case OHM:
       result += rs.resistors[i].value;
-    }
-
-    if (rs.resistors[i].measure == KOHM) {
-      result +=  rs.resistors[i].value * MOD_KOHM;
-    }
-
-    if (rs.resistors[i].measure == MOHM) {
-      result +=  rs.resistors[i].value * MOD_MOHM;
+      break;
+    case KOHM:
+      result += rs.resistors[i].value * MOD_KOHM;
+      break;
+    case MOHM:
+      result += rs.resistors[i].value * MOD_MOHM;
+      break;
     }
   }
 
   r_result.value = result;
+
+  if (result % MOD_KOHM == 0) {
+    r_result.measure = KOHM;
+  } else if (result % MOD_MOHM == 0) {
+    r_result.measure = MOHM;
+  }
+
+  return r_result;
+}
+
+resistor_t in_parallel(resistor_array rs)
+{
+  int32_t result = 1;
+  resistor_t r_result;
+  resistor_t in_series_result = in_series(rs);
+
+  for (size_t i = 0; i < rs.length; ++i) {
+    switch(rs.resistors[i].measure) {
+    case OHM:
+      result *= rs.resistors[i].value;
+      break;
+    case KOHM:
+      result *= rs.resistors[i].value * MOD_KOHM;
+      break;
+    case MOHM:
+      result *= rs.resistors[i].value * MOD_MOHM;
+      break;
+    }
+  }
+
+  r_result.value = result / in_series_result.value;
 
   if (result % MOD_KOHM == 0) {
     r_result.measure = KOHM;

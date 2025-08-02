@@ -69,3 +69,19 @@
         Emergente e boa para ficar de olho. Problema dele são os pacotes
         que são muito novos, e a maioria são bindings e FFI, o que não teria
         nexo em usar se eu já tivesse fazendo em C.
+
+***** TODO Parsing de arquivos INI em C
+     * [ ] Ler um arquivo ini básico
+     * [ ] Aplicar o ini a uma estrutura específica do Lamina
+
+***** TODO Parsing de arquivos INI em Odin
+     * [ ] Ler um arquivo ini básico
+     * [ ] Aplicar o ini a uma estrutura específica do Lamina
+
+***** TODO Parsing de arquivos INI em Rust
+     * [ ] Ler um arquivo ini básico
+     * [ ] Aplicar o ini a uma estrutura específica do Lamina
+
+***** BONUS Parsing de arquivos INI em Haskell
+     * [ ] Ler um arquivo ini básico
+     * [ ] Aplicar o ini a uma estrutura específica do Lamina

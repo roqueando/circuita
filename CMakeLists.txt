@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.27)
-project(lamina LANGUAGES C)
+project(heximula LANGUAGES C)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_C_STANDARD 23)
@@ -17,8 +17,8 @@ option(BUILD_CXX OFF)
 #set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE) # don't build the supplied examples
 #set(BUILD_GAMES    OFF CACHE BOOL "" FORCE) # don't build the supplied example games
 
-add_executable(lamina src/main.c)
-target_link_libraries(lamina PUBLIC ${LIB_NAME})
+add_executable(heximula src/main.c)
+target_link_libraries(heximula PUBLIC ${LIB_NAME})
 
 include(packages/main.cmake)
 

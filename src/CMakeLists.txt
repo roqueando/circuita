@@ -14,9 +14,14 @@ file(GLOB_RECURSE SOURCE_LIST
 message(STATUS ${SOURCE_LIST})
 
 add_library(${LIB_NAME} STATIC
-  ${SOURCE_LIST}
-  ${HEADER_LIST}
+    core/microcontroller.c
+    core/pin_manager.c
+    cli/cli.c
+    qemu/qemu_interface.c
 )
 
-target_link_libraries (${LIB_NAME} PUBLIC  config)
-target_include_directories(${LIB_NAME} PUBLIC "${CMAKE_SOURCE_DIR}/include")
+target_include_directories(${LIB_NAME} PUBLIC
+    ${CMAKE_SOURCE_DIR}/include
+)
+
+target_link_libraries(${LIB_NAME} PUBLIC libconfig)

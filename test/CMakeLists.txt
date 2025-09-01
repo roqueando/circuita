@@ -1,18 +1,5 @@
+add_executable(test_basic test_basic.c)
+target_link_libraries(test_basic PUBLIC core)
+
 enable_testing()
-
-add_executable(test_resistor
-    test_resistor.c
-)
-
-target_link_libraries(test_resistor
-    PRIVATE ${LIB_NAME}
-)
-
-target_include_directories(test_resistor
-    PRIVATE ${CMAKE_SOURCE_DIR}/include
-)
-
-add_test(
-    NAME TestResistor
-    COMMAND test_resistor
-)
+add_test(NAME BasicTest COMMAND test_basic)

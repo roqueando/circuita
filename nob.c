@@ -22,11 +22,13 @@ int main(int argc, char **argv)
                  "-o",
                  BUILD_FOLDER"circuita",
                  SRC_FOLDER"main.c",
-                 SRC_FOLDER"components/resistor.c");
+                 SRC_FOLDER"components/resistor.c",
+                 SRC_FOLDER"components/util.c"
+                 );
 
   if(!nob_cmd_run(&cmd)) return 1;
 
-  // building tests
+  // test resistor
   nob_cmd_append(&cmd,
                  "clang",
                  "-Wall",
@@ -37,6 +39,20 @@ int main(int argc, char **argv)
                  BUILD_FOLDER"test_resistor",
                  TEST_FOLDER"test_resistor.c",
                  SRC_FOLDER"components/resistor.c"
+                 );
+  if(!nob_cmd_run(&cmd)) return 1;
+
+  // test utils
+  nob_cmd_append(&cmd,
+                 "clang",
+                 "-Wall",
+                 "-Wextra",
+                 "-I./include",
+                 "-std=c17",
+                 "-o",
+                 BUILD_FOLDER"test_util",
+                 TEST_FOLDER"test_util.c",
+                 SRC_FOLDER"components/util.c"
                  );
   if(!nob_cmd_run(&cmd)) return 1;
 

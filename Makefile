@@ -3,7 +3,7 @@ BUILDDIR = build
 
 all: build run
 
-test:
+test: build
 	@./$(BUILDDIR)/test_resistor
 #test: build
 #	@cd $(BUILDDIR)/test && ctest --output-on-failure

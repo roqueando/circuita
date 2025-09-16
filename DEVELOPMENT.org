@@ -1,0 +1,87 @@
+#+TITLE: Project CIRCUITA
+#+AUTHOR: Vitor Roque
+
+* Diário de Bordo do Projeto CIRCUITA
+  Aqui vou listar com minhas palavras (em português, em breve disponível em inglês), como vou criar esse projeto.
+** Descrição do Projeto
+   O Lamina é uma plataforma que vai servir para eu e outras pessoas poderem "programar" eletrônica, de forma open-source podendo contribuir com vários componentes (até circuitos complexos).
+   Assim o projeto será quebrado em algumas fases.
+
+   1. Computação de matemática eletrônica, também chamado de Solver, a partir de um arquivo `.ini` para processar e inicializar seus componentes.
+   2. Aplicação dessas computações entre os dispositivos baseado em circuito eletrônico e geração de um arquivo de grafos (usando [graphviz](https://graphviz.org/) talvez?) para gerar o circuito eletrônico.
+   3. Utilização da API do QEMU para emular esses circuitos e poder utilizar códigos reais dentro desse emulador, assim além de ter o código para ter seu "circuito programado", você terá o código funcionando em um emulador.
+   4. Utilização de interface gráfica pra testar os circuitos de forma visual e animada.
+
+*** 01/08/2025 - Inicialização do projeto
+    Comecei definindo algumas coisas do que seria o CIRCUITA
+    * O que é:
+      Lamina é uma aplicação Desktop para simulação eletrônica facilitada
+      de dispositivos embarcados.
+
+    * Objetivo:
+      Conseguir usar um emulador base para criar uma API que resultará
+      numa criação por meio de algum arquivo de config (como `.ini`),
+      onde o usuário vai descrever seus componentes.
+
+**** Definição de componentes
+     O Lamina terá 4 tipos recursos:
+
+     1. Base:
+        Aqui será os recursos indispensáveis em um circuito eletrônico,
+        como Tensão (V) e Voltagem (V), Corrente (I) e Amperagem (A),
+        que será usados como inputs, ou seja, será necessário ter ele
+        no arquivo pré definido.
+
+     2. Componentes Eletrônicos:
+        Aqui os componentes eletrônicos utilizarão dos recursos base
+        para poder criar um componente (ou dispositivo elétrico como nos livros)
+        fazendo uma fórmula, como: Resistor -> R = V / I.
+        O programa deve ser capaz de aplicar isso corretamente.
+
+     3. Circuitos<WIP>:
+        Os circuitos são as junções das bases e outros componentes num circuito fechado.
+        Ele será responsável por calcular e dar um fechamento correto baseado nos estudos
+        de circuitos eletrônicos.
+        
+     4. Placas<WIP>:
+        As placas são junções de vários circuitos interligados.
+
+**** Definição das linguagens
+     O Lamina vai ser feito em uma dessas linguagens, e para cada uma
+     vou tentar dar minha opinião podendo mudar de linguagem ao longo
+     do tempo.
+
+     1. C:
+        Mais propenso a ser utilizado, bem simples, consigo aplicar os
+        conceitos de forma fácil, com structs e funções simples sem
+        problemas para alocar memória (de começo).
+
+     2. Odin:
+        Mais propenso a ser usado ao evoluir, bem parecido com Golang
+        e bem performático, com alguns cases de simuladores físicos do
+        JangaFX.
+
+     3. Ada:
+        Nunca utilizei, porém parece ser bastante utilizado em embarcados
+        e alguns GUI.
+
+     4. Rust:
+        Emergente e boa para ficar de olho. Problema dele são os pacotes
+        que são muito novos, e a maioria são bindings e FFI, o que não teria
+        nexo em usar se eu já tivesse fazendo em C.
+
+***** TODO Parsing de arquivos INI em C
+     * [ ] Ler um arquivo ini básico
+     * [ ] Aplicar o ini a uma estrutura específica do Lamina
+
+***** TODO Parsing de arquivos INI em Odin
+     * [ ] Ler um arquivo ini básico
+     * [ ] Aplicar o ini a uma estrutura específica do Lamina
+
+***** TODO Parsing de arquivos INI em Rust
+     * [ ] Ler um arquivo ini básico
+     * [ ] Aplicar o ini a uma estrutura específica do Lamina
+
+***** BONUS Parsing de arquivos INI em Haskell
+     * [ ] Ler um arquivo ini básico
+     * [ ] Aplicar o ini a uma estrutura específica do Lamina

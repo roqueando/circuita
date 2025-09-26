@@ -66,7 +66,7 @@ int main(void) {
     return 1;
   }
 
-  printf("==== TESTS PASSED ====\n");
+  printf("==== [test_util] TESTS PASSED ====\n");
 
   return 0;
 }

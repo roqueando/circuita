@@ -5,11 +5,10 @@ all: build run
 
 test: build
 	@./$(BUILDDIR)/test_resistor
-#test: build
-#	@cd $(BUILDDIR)/test && ctest --output-on-failure
+	@./$(BUILDDIR)/test_util
 
 run: 
-	@./$(TARGET)
+	@./$(BUILDDIR)/$(TARGET)
 
 build: nob
 	@./nob

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RESISTOR_H
+#define RESISTOR_H
 
 #include <stdlib.h>
 
@@ -19,3 +20,5 @@ resistor_t in_parallel(resistor_array rs);
 void resistor_array_init(resistor_array *arr, size_t initial_capacity);
 void resistor_array_push(resistor_array *arr, resistor_t r);
 void resistor_array_free(resistor_array *arr);
+
+#endif // RESISTOR_H

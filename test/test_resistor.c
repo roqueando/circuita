@@ -77,6 +77,32 @@ int test_in_parallel_resistor() {
   return 1;
 }
 
+int test_in_parallel_resistor_with_three_resistors() {
+  resistor_t r1 = {5000};
+  resistor_t r2 = {10000};
+  resistor_t r3 = {10000};
+  resistor_t expected = {2500};
+
+  resistor_array ra;
+  resistor_array_init(&ra, 3);
+  resistor_array_push(&ra, r1);
+  resistor_array_push(&ra, r2);
+  resistor_array_push(&ra, r3);
+
+  resistor_t result = in_parallel(ra);
+
+  if (round(result.value) != round((double)expected.value)) {
+    fprintf(stderr,
+            "%s FAILED: r1.value[%.2f], r2.value[%.2f], result.value[%.2f], "
+            "expected.value[%.2f]\n",
+            __func__, r1.value, r2.value, result.value, expected.value);
+    return 0;
+  }
+
+  resistor_array_free(&ra);
+  return 1;
+}
+
 int test_in_parallel_resistor_should_operate_from_kohm_to_mohm() {
   resistor_t r1 = {1000000};
   resistor_t r2 = {3000};
@@ -117,8 +143,11 @@ int main(void) {
   if (!test_in_parallel_resistor_should_operate_from_kohm_to_mohm()) {
     return 1;
   }
+  if (!test_in_parallel_resistor_with_three_resistors()) {
+    return 1;
+  }
 
-  printf("==== TESTS PASSED ====\n");
+  printf("==== [test_resistor] TESTS PASSED ====\n");
 
   return 0;
 }

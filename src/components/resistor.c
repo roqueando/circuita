@@ -49,13 +49,24 @@ resistor_t in_parallel(resistor_array rs)
 {
   double result = 1.0;
   resistor_t r_result;
-  resistor_t in_series_result = in_series(rs);
 
-  for (size_t i = 0; i < rs.length; ++i) {
-    result *= rs.resistors[i].value;
+  if (rs.length > 2) {
+    double in_result = 0.0;
+    for (size_t i = 0; i < rs.length; ++i) {
+      in_result += 1/rs.resistors[i].value;
+    }
+    r_result.value = 1.0 / in_result;
+    return r_result;
+    // do the 1/((1/r1)+(1/r2)+(1/r3)+...)
+  } else {
+    resistor_t in_series_result = in_series(rs);
+
+    for (size_t i = 0; i < rs.length; ++i) {
+      result *= rs.resistors[i].value;
+    }
+
+    r_result.value = result / in_series_result.value;
   }
-
-  r_result.value = result / in_series_result.value;
 
   return r_result;
 }
